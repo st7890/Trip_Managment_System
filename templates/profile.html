@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
+    <style>
+        .logout-form {
+            text-align: center; /* Center the button */
+            margin-top: 20px; /* Add some space at the top */
+        }
+
+        .logout-form input[type="submit"] {
+            background-color: #dc3545; /* Red color for logout button */
+            color: #fff; /* White text color */
+            border: none; /* Remove border */
+            padding: 10px 20px; /* Padding for button */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Cursor style */
+            transition: background-color 0.3s ease; /* Smooth transition on hover */
+        }
+
+        .logout-form input[type="submit"]:hover {
+            background-color: #c82333; /* Darker red color on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Profile</h1>
+            <a class="profile-link" href="/">Back to Dashboard</a>
+        </header>
+        {% if edit_mode %}
+        <form method="post" action="/update_profile">
+            <input type="hidden" name="username" value="{{ user_details[2] }}">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="{{ user_details[3] }}">
+            <label for="home_city">Home City:</label>
+            <input type="text" id="home_city" name="home_city" value="{{ user_details[4] }}">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="{{ user_details[5] }}">
+            <label for="contact_number">Contact Number:</label>
+            <input type="text" id="contact_number" name="contact_number" value="{{ user_details[6] }}">
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender">
+                <option value="Male" {% if user_details[7] == 'Male' %} selected {% endif %}>Male</option>
+                <option value="Female" {% if user_details[7] == 'Female' %} selected {% endif %}>Female</option>
+                <option value="Other" {% if user_details[7] == 'Other' %} selected {% endif %}>Other</option>
+            </select>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" value="{{ user_details[8] }}">
+            <label for="address">Address:</label>
+            <textarea id="address" name="address">{{ user_details[9] }}</textarea>
+            <input type="submit" value="Save">
+        </form>
+        {% else %}
+        <div class="profile-details">
+            <p><strong>Username:</strong> {{ user_details[2] }}</p>
+            <p><strong>Name:</strong> {{ user_details[3] }}</p>
+            <p><strong>Home City:</strong> {{ user_details[4] }}</p>
+            <p><strong>Email:</strong> {{ user_details[5] }}</p>
+            <p><strong>Contact Number:</strong> {{ user_details[6] }}</p>
+            <p><strong>Gender:</strong> {{ user_details[7] }}</p>
+            <p><strong>Age:</strong> {{ user_details[8] }}</p>
+            <p><strong>Address:</strong> {{ user_details[9] }}</p>
+            <form method="post" action="/profile_edit">
+                <input type="hidden" name="edit_mode" value="true">
+                <input type="submit" value="Edit">
+            </form>
+        </div>
+        {% endif %}
+        
+        <!-- Logout Button -->
+        <form method="post" action="/logout" class="logout-form">
+            <input type="submit" value="Logout">
+        </form>
+        
+    </div>
+</body>
+</html>

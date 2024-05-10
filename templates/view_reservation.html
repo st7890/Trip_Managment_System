@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Reservations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles-view-reservation.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>View Reservations</h2>
+        <div class="reservations">
+            {% if reservations %}
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Guests</th>
+                        <th>Place</th>
+                    </tr>
+                    {% for reservation in reservations %}
+                        <tr>
+                            <td>{{ reservation[1] }}</td>
+                            <td>{{ reservation[2] }}</td>
+                            <td>{{ reservation[3] }}</td>
+                            <td>{{ reservation[4] }}</td>
+                            <td>{{ reservation[5] }}</td>
+                            <td>{{ reservation[6] }}</td>
+                            <td>{{ reservation[7] }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <p>No reservations found.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

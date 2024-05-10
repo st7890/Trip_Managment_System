@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9; /* Light gray background color */
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto; /* Centering the container */
+            padding: 20px;
+            background-color: #fff; /* White background color */
+            border: 1px solid #ccc; /* Light gray border */
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff; /* Blue text color */
+        }
+
+        .tabs {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            background-color: #007bff; /* Blue background color */
+            color: #fff; /* White text color */
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            margin: 10px; /* Add some space between buttons */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .tab:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: #fff; /* White background color */
+            border: 1px solid #ccc; /* Light gray border */
+            border-radius: 4px;
+        }
+
+        .tab-content textarea {
+            margin-bottom: 10px; /* Add space between textareas */
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd; /* Light gray border */
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff; /* Blue background color */
+            color: #fff; /* White text color */
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2; /* Light gray background color for even rows */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Admin Page</h1>
+        <p>This page is only accessible to admin users.</p>
+        <div class="tabs">
+            <a class="tab" href="/show_users">Show Users</a>
+            <button class="tab" onclick="openTab('add')">Add Customer - Under Construction</button>
+            <button class="tab" onclick="openTab('delete')">Delete Customer </Under></button>
+            <button class="tab" onclick="openTab('update')">Update Customer - Under Construction</Under></button>
+        </div>
+
+        <!-- <div id="showUsers" class="tab-content" style="display: block;"> 
+            <h2>All Users</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Name</th>
+                        <th>Home City</th>
+                        <th>Email</th>
+                        <th>Contact Number</th>
+                        <th>Gender</th>
+                        <th>Age</th>
+                        <th>Address</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td>nik</td>
+                        <td>Nik</td>
+                        <td>New York</td>
+                        <td>nik@example.com</td>
+                        <td>1234567890</td>
+                        <td>Male</td>
+                        <td>25</td>
+                        <td>123 Sannasi C</td>
+                    </tr>
+                    <tr>
+                        <td>alu</td>
+                        <td>Alu</td>
+                        <td>Los Angeles</td>
+                        <td>alu@example.com</td>
+                        <td>9876543210</td>
+                        <td>Female</td>
+                        <td>30</td>
+                        <td>456 Pune East Coast</td>
+                    </tr>
+                    <tr>
+                        <td>bhindi</td>
+                        <td>Bhindi</td>
+                        <td>Chicago</td>
+                        <td>bhindi@example.com</td>
+                        <td>5551234567</td>
+                        <td>Male</td>
+                        <td>35</td>
+                        <td>789 Veg nagar</td>
+                    </tr>
+                    <tr>
+                        <td>tamatar</td>
+                        <td>Tamatar</td>
+                        <td>Miami</td>
+                        <td>tamatar@example.com</td>
+                        <td>9876543210</td>
+                        <td>Female</td>
+                        <td>28</td>
+                        <td>1010 Pizza ki upar</td>
+                    </tr>
+                    
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user[0] }}</td>
+                            <td>{{ user[1] }}</td>
+                            <td>{{ user[2] }}</td>
+                            <td>{{ user[3] }}</td>
+                            <td>{{ user[4] }}</td>
+                            <td>{{ user[5] }}</td>
+                            <td>{{ user[6] }}</td>
+                            <td>{{ user[7] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div> -->
+
+        <div id="showUsers" class="tab-content"">
+            <h2>All Users</h2>
+            <table border="1">
+                <tr>
+                    <th>ID</th>
+                    <th>User Name</th>
+                    <th>Name</th>
+                    <th>City</th>
+                    <th>Main</th>
+                    <th>Contact_no</th>
+                    <th>Gender</th>
+                </tr>
+                {% for user in users_details %}
+                <tr>
+                    <td>{{ user[1] }}</td>
+                    <td>{{ user[2] }}</td>
+                    <td>{{ user[3] }}</td>
+                    <td>{{ user[4] }}</td>
+                    <td>{{ user[5] }}</td>
+                    <td>{{ user[6] }}</td>
+                    <td>{{ user[7] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        
+        <div id="add" class="tab-content">
+            <h2>Add Customer</h2>
+            <!-- Add Customer Form -->
+            <form method="post" action="/add_customer">
+                <label for="username">Username:</label><br>
+                <input type="text" id="username" name="username"><br>
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" name="password"><br>
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" name="name"><br>
+                <label for="home_city">Home City:</label><br>
+                <input type="text" id="home_city" name="home_city"><br>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email"><br>
+                <label for="contact_number">Contact Number:</label><br>
+                <input type="text" id="contact_number" name="contact_number"><br>
+                <label for="gender">Gender:</label><br>
+                <select id="gender" name="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select><br>
+                <label for="age">Age:</label><br>
+                <input type="number" id="age" name="age"><br>
+                <label for="address">Address:</label><br>
+                <textarea id="address" name="address"></textarea><br>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        
+
+        <div id="delete" class="tab-content">
+            <h2>Delete Customer</h2>
+            <!-- Delete Customer Form -->
+            <form method="post" action="/delete_customer">
+                <label for="username">Username:</label><br>
+                <input type="text" id="username" name="username"><br>
+                <input type="submit" value="Delete">
+            </form>
+        </div>
+
+        <div id="update" class="tab-content">
+            <h2>Update Customer</h2>
+            <!-- Update Customer Form -->
+            <form method="post" action="/update_customer">
+                <label for="username">Username:</label><br>
+                <input type="text" id="username" name="username"><br>
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" name="password"><br>
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" name="name"><br>
+                <label for="home_city">Home City:</label><br>
+                <input type="text" id="home_city" name="home_city"><br>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email"><br>
+                <label for="contact_number">Contact Number:</label><br>
+                <input type="text" id="contact_number" name="contact_number"><br>
+                <label for="gender">Gender:</label><br>
+                <select id="gender" name="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select><br>
+                <label for="age">Age:</label><br>
+                <input type="number" id="age" name="age"><br>
+                <label for="address">Address:</label><br>
+                <textarea id="address" name="address"></textarea><br>
+                <input type="submit" value="Update">
+            </form>
+        </div>
+
+        <script>
+            function openTab(tabName) {
+                var i, tabcontent, tablinks;
+                tabcontent = document.getElementsByClassName("tab-content");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+                document.getElementById(tabName).style.display = "block";
+            }
+        </script>
+
+    </div>
+</body>
+</html>

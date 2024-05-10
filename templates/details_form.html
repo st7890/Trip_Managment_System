@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Add Post</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='details.css') }}">
+    </head>
+<body>
+    <h2>User Details Form</h2>
+    <form action="/dashboard" method="POST">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br>
+        
+        <label for="home_city">Home City:</label><br>
+        <input type="text" id="home_city" name="home_city" required><br>
+        
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br>
+        
+        <label for="contact_number">Contact Number:</label><br>
+        <input type="tel" id="contact_number" name="contact_number" required><br>
+        
+        <label for="gender">Gender:</label><br>
+        <select id="gender" name="gender" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select><br>
+        
+        <label for="age">Age:</label><br>
+        <input type="number" id="age" name="age" required><br>
+        
+        <label for="address">Address:</label><br>
+        <textarea id="address" name="address" required></textarea><br>
+        
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

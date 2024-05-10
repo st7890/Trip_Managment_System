@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, {{ username }}!</h1>
+    {% if is_admin %}
+        <p>You are logged in as an admin.</p>
+        <p><a href="/admin">Admin Page</a></p>
+    {% else %}
+        <p>You are logged in as a regular user.</p>
+        <form method="post" action="/dashboard">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br>
+            <label for="home_city">Home City:</label><br>
+            <input type="text" id="home_city" name="home_city"><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email"><br>
+            <label for="contact_number">Contact Number:</label><br>
+            <input type="text" id="contact_number" name="contact_number"><br>
+            <label for="gender">Gender:</label><br>
+            <select id="gender" name="gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select><br>
+            <label for="age">Age:</label><br>
+            <input type="number" id="age" name="age"><br>
+            <label for="address">Address:</label><br>
+            <textarea id="address" name="address"></textarea><br>
+            <input type="submit" value="Submit">
+        </form>
+    {% endif %}
+    <p><a href="/logout">Logout</a></p>
+</body>
+</html>
